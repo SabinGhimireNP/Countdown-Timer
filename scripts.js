@@ -3,13 +3,13 @@ const timerDisplay = document.querySelector(".display__time-left");
 const endTime = document.querySelector(".display__end-time");
 const timeSet = document.querySelectorAll("[data-time]");
 function timer(seconds) {
- clearInterval(countdown);
+  clearInterval(countdown);
   const now = Date.now();
   const then = now + seconds * 1000;
   displayEndTime(then);
   displayTimeLeft(seconds);
   //   console.log(now);
-   countdown = setInterval(() => {
+  countdown = setInterval(() => {
     const secLeft = Math.round((then - Date.now()) / 1000);
     if (secLeft < 0) {
       clearInterval(countdown);
@@ -37,11 +37,16 @@ function displayEndTime(timestamp) {
   }`;
 }
 
-function setTimer()
-{
-timer(time.dataset.time)
-}
+function setTimer() {}
 
 timeSet.forEach((time) =>
-  time.addEventListener("click", () => )
+  time.addEventListener("click", () => timer(time.dataset.time))
 );
+
+document.customForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const sec = this.minutes.value * 60;
+  timer(sec);
+  this.reset();
+  console.log(min);
+});
